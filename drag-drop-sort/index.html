@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" ng-app="myApp" ng-controller="myCtrl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Sortable - Default functionality</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <style>
+      #sortable img{ height: 100px; }
+      #sortable{ list-style-type: none; }
+  </style>
+</head>
+  <body>
+      <ul id="sortable">
+        <li class="ui-state-default" ng-repeat="i in images">
+          <p class="item" id="{{i.id}}">{{i.text}}</p>
+        </li>
+      </ul>
+
+      <script type="text/javascript">
+          angular.module('myApp', []).controller('myCtrl', function( $scope ){
+              $scope.images = [
+                  {id: 1, text:'Item with id=1'},
+                  {id: 2, text:'Item with id=2'},
+                  {id: 3, text:'Item with id=3'}
+              ];
+              angular.element( "#sortable" ).sortable();
+              angular.element( "#sortable" ).disableSelection();
+
+              angular.element( "#sortable" ).sortable({
+                  stop: function( event, ui ) {
+                      var dataToUpdate = [];      
+                      var items = angular.element('p.item');
+                      $.each(items, function(index, item){
+                          var id = angular.element('p.item')[index].id;
+                          dataToUpdate.push({
+                              index: index,
+                              id: id
+                          });
+                      });
+                      console.log(dataToUpdate);
+                  }
+              });
+          });
+      </script>
+  </body>
+</html>
