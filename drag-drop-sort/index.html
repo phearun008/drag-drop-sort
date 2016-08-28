@@ -51,7 +51,7 @@
                       angular.forEach(items, function(item, index){
                           dataToUpdate.push({
                               index: index,
-                              id: angular.element('p.item')[index].id
+                              id: item.id
                           });
                       });
                       console.log(dataToUpdate);
