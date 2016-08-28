@@ -12,7 +12,7 @@
           list-style-type: none; 
       }
       #sortable .item{
-          padding: 10px;
+          padding: 5px;
           background-color: #dadada;
           margin-bottom: 5px;
           color: #000;
@@ -20,11 +20,17 @@
   </style>
 </head>
   <body>
-      <ul id="sortable">
+      <!-- <ul id="sortable">
         <li class="item" ng-repeat="item in items">
           <p class="item" id="{{item.id}}" ng-bind="item.text"></p>
         </li>
-      </ul>
+      </ul> -->
+
+      <div id="sortable">
+          <div class="item" ng-repeat="item in items">
+              <p class="item" id="{{item.id}}" ng-bind="item.text"></p>
+          </div>  
+      </div>  
 
       <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
       <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
@@ -34,9 +40,10 @@
               $scope.items = [
                   {id: 1, text:'Item with id = 1'},
                   {id: 2, text:'Item with id = 2'},
-                  {id: 3, text:'Item with id = 3'}
+                  {id: 3, text:'Item with id = 3'},
+                  {id: 4, text:'Item with id = 4'},
+                  {id: 5, text:'Item with id = 5'}
               ];
-
               angular.element("#sortable").sortable({
                   stop: function( event, ui ) {
                       var dataToUpdate = [];      
